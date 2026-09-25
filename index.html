@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجري</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>🛍️ متجري</h1>
+  <p>منتجات مميزة بأسعار مناسبة</p>
+</header>
+
+<main>
+  <section class="products">
+
+    <div class="product">
+      <div class="product-image">📦</div>
+      <h2>المنتج الأول</h2>
+      <p>وصف قصير للمنتج</p>
+      <strong>25 د.ت</strong>
+      <button onclick="addToCart('المنتج الأول', 25)">أضف إلى السلة</button>
+    </div>
+
+    <div class="product">
+      <div class="product-image">🎧</div>
+      <h2>المنتج الثاني</h2>
+      <p>وصف قصير للمنتج</p>
+      <strong>40 د.ت</strong>
+      <button onclick="addToCart('المنتج الثاني', 40)">أضف إلى السلة</button>
+    </div>
+
+    <div class="product">
+      <div class="product-image">⌚</div>
+      <h2>المنتج الثالث</h2>
+      <p>وصف قصير للمنتج</p>
+      <strong>60 د.ت</strong>
+      <button onclick="addToCart('المنتج الثالث', 60)">أضف إلى السلة</button>
+    </div>
+
+  </section>
+
+  <section class="cart">
+    <h2>🛒 سلة المشتريات</h2>
+    <div id="cartItems">السلة فارغة</div>
+
+    <h3>
+      المجموع:
+      <span id="total">0</span> د.ت
+    </h3>
+
+    <button class="order-button" onclick="sendOrder()">
+      📱 إرسال الطلب
+    </button>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 متجري</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
