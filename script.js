@@ -25,13 +25,13 @@ const currencySymbols = {
 };
 
 function addToCart(name, priceUSD) {
+  window.addToCart = addToCart;
   cart.push({ name, priceUSD });
   updateCart();
 }
 
 function formatLocalPrice(priceUSD) {
-  const value = priceUSD * exchangeRate;
-  return `${value.toFixed(2)} ${visitorSymbol}`;
+  return `$${priceUSD.toFixed(2)} USD`;
 }
 
 function updateCart() {
@@ -84,63 +84,7 @@ function updateProductPrices() {
   });
 }
 
-async function loadCurrency() {
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
-
-    const locationResponse = await fetch(
-      "https://ipapi.co/json/",
-      { signal: controller.signal }
-    );
-
-    clearTimeout(timeout);
-
-    if (!locationResponse.ok) {
-      throw new Error("Location unavailable");
-    }
-
-    const location = await locationResponse.json();
-
-    visitorCurrency = location.currency || "USD";
-    visitorSymbol = currencySymbols[visitorCurrency] || visitorCurrency;
-
-    if (visitorCurrency === "USD") {
-      exchangeRate = 1;
-    } else {
-      const rateController = new AbortController();
-      const rateTimeout = setTimeout(() => rateController.abort(), 5000);
-
-      const rateResponse = await fetch(
-        `https://api.frankfurter.dev/v2/rate/USD/${visitorCurrency}`,
-        { signal: rateController.signal }
-      );
-
-      clearTimeout(rateTimeout);
-
-      if (!rateResponse.ok) {
-        throw new Error("Exchange rate unavailable");
-      }
-
-      const rateData = await rateResponse.json();
-      exchangeRate = rateData.rate;
-    }
-
-    updateProductPrices();
-    updateCart();
-
-  } catch (error) {
-    console.log("Currency detection failed:", error);
-
-    visitorCurrency = "USD";
-    visitorSymbol = "$";
-    exchangeRate = 1;
-
-    updateProductPrices();
-    updateCart();
-  }
-}
-
+function loadCurrency() {}
 
 function showPayment() {
   if (cart.length === 0) {
@@ -153,7 +97,7 @@ function showPayment() {
   const totalUSDT = totalUSD;
   const totalTND = totalUSDT * rate;
 
-  document.getElementById("paymentTnd").textContent = totalTND.toFixed(2);
+  document.getElementById("paymentUsd").textContent = totalUSD.toFixed(2);
   document.getElementById("paymentUsdt").textContent = totalUSDT.toFixed(2);
   document.getElementById("paymentSection").style.display = "block";
 
@@ -178,3 +122,4 @@ function sendPaymentOrder() {
   const totalTND = totalUSDT * rate;
 
   alert("تم تأكيد معلومات الطلب. سيتم التحقق من الدفع يدويًا.");
+}
