@@ -20,8 +20,7 @@
       <div class="product-image">📦</div>
       <h2>المنتج الأول</h2>
       <p>وصف قصير للمنتج</p>
-      <strong>25.00 $ USD</strong>
-      <div>السعر المحلي يظهر تلقائياً</div>
+      <strong id="price-1">جاري حساب السعر...</strong>
       <button onclick="addToCart('المنتج الأول', 25)">
         أضف إلى السلة
       </button>
@@ -31,8 +30,7 @@
       <div class="product-image">🎧</div>
       <h2>المنتج الثاني</h2>
       <p>وصف قصير للمنتج</p>
-      <strong>40.00 $ USD</strong>
-      <div>السعر المحلي يظهر تلقائياً</div>
+      <strong id="price-2">جاري حساب السعر...</strong>
       <button onclick="addToCart('المنتج الثاني', 40)">
         أضف إلى السلة
       </button>
@@ -42,8 +40,7 @@
       <div class="product-image">⌚</div>
       <h2>المنتج الثالث</h2>
       <p>وصف قصير للمنتج</p>
-      <strong>60.00 $ USD</strong>
-      <div>السعر المحلي يظهر تلقائياً</div>
+      <strong id="price-3">جاري حساب السعر...</strong>
       <button onclick="addToCart('المنتج الثالث', 60)">
         أضف إلى السلة
       </button>
@@ -61,10 +58,22 @@
       <span id="total">0</span>
     </h3>
 
-    <button class="order-button" onclick="sendOrder()">
+    <button class="order-button" onclick="showPayment()">
       📱 إرسال الطلب
     </button>
   </section>
+<section id="paymentSection" class="cart" style="display:none">
+<h2>💳 الدفع اليدوي بـ USDT</h2>
+<p>المبلغ المطلوب: <strong id="paymentTnd">0</strong> د.ت</p>
+<p>المبلغ بـ USDT: <strong id="paymentUsdt">0</strong> USDT</p>
+<p>Binance UID:</p>
+<strong>950124722</strong>
+<p>بعد التحويل، أدخل معلوماتك:</p>
+<input id="customerName" type="text" placeholder="الاسم">
+<input id="customerPhone" type="tel" placeholder="رقم الهاتف">
+<input id="txid" type="text" placeholder="رقم المعاملة / TxID">
+<button onclick="sendPaymentOrder()">تأكيد الدفع</button>
+</section>
 </main>
 
 <footer>

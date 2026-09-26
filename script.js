@@ -68,22 +68,55 @@ function removeItem(index) {
   updateCart();
 }
 
+function updateProductPrices() {
+  const prices = [
+    { id: "price-1", usd: 25 },
+    { id: "price-2", usd: 40 },
+    { id: "price-3", usd: 60 }
+  ];
+
+  prices.forEach(item => {
+    const element = document.getElementById(item.id);
+    if (element) {
+      element.textContent =
+        `${formatLocalPrice(item.usd)} — $${item.usd.toFixed(2)} USD`;
+    }
+  });
+}
+
 async function loadCurrency() {
   try {
-    const locationResponse = await fetch("https://ipapi.co/json/");
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+
+    const locationResponse = await fetch(
+      "https://ipapi.co/json/",
+      { signal: controller.signal }
+    );
+
+    clearTimeout(timeout);
+
+    if (!locationResponse.ok) {
+      throw new Error("Location unavailable");
+    }
+
     const location = await locationResponse.json();
 
-    if (location.currency) {
-      visitorCurrency = location.currency;
-      visitorSymbol = currencySymbols[visitorCurrency] || visitorCurrency;
-    }
+    visitorCurrency = location.currency || "USD";
+    visitorSymbol = currencySymbols[visitorCurrency] || visitorCurrency;
 
     if (visitorCurrency === "USD") {
       exchangeRate = 1;
     } else {
+      const rateController = new AbortController();
+      const rateTimeout = setTimeout(() => rateController.abort(), 5000);
+
       const rateResponse = await fetch(
-        `https://api.frankfurter.dev/v2/rate/USD/${visitorCurrency}`
+        `https://api.frankfurter.dev/v2/rate/USD/${visitorCurrency}`,
+        { signal: rateController.signal }
       );
+
+      clearTimeout(rateTimeout);
 
       if (!rateResponse.ok) {
         throw new Error("Exchange rate unavailable");
@@ -93,6 +126,7 @@ async function loadCurrency() {
       exchangeRate = rateData.rate;
     }
 
+    updateProductPrices();
     updateCart();
 
   } catch (error) {
@@ -102,36 +136,45 @@ async function loadCurrency() {
     visitorSymbol = "$";
     exchangeRate = 1;
 
+    updateProductPrices();
     updateCart();
   }
 }
 
-function sendOrder() {
+
+function showPayment() {
   if (cart.length === 0) {
     alert("السلة فارغة");
     return;
   }
 
-  let message = "السلام عليكم، أريد طلب:%0A%0A";
+  const totalUSD = cart.reduce((sum, item) => sum + item.priceUSD, 0);
+  const rate = 120;
+  const totalUSDT = totalUSD;
+  const totalTND = totalUSDT * rate;
 
-  cart.forEach(item => {
-    message += `- ${item.name} : $${item.priceUSD.toFixed(2)} USD%0A`;
+  document.getElementById("paymentTnd").textContent = totalTND.toFixed(2);
+  document.getElementById("paymentUsdt").textContent = totalUSDT.toFixed(2);
+  document.getElementById("paymentSection").style.display = "block";
+
+  document.getElementById("paymentSection").scrollIntoView({
+    behavior: "smooth"
   });
-
-  const totalUSD = cart.reduce(
-    (sum, item) => sum + item.priceUSD,
-    0
-  );
-
-  message += `%0Aالمجموع: $${totalUSD.toFixed(2)} USD`;
-
-  const phone = "21600000000";
-
-  window.open(
-    `https://wa.me/${phone}?text=${message}`,
-    "_blank"
-  );
 }
 
-loadCurrency();
-updateCart();
+function sendPaymentOrder() {
+  const name = document.getElementById("customerName").value.trim();
+  const phoneCustomer = document.getElementById("customerPhone").value.trim();
+  const txid = document.getElementById("txid").value.trim();
+
+  if (!name || !phoneCustomer || !txid) {
+    alert("الرجاء إدخال الاسم ورقم الهاتف و TxID");
+    return;
+  }
+
+  const totalUSD = cart.reduce((sum, item) => sum + item.priceUSD, 0);
+  const rate = 120;
+  const totalUSDT = totalUSD;
+  const totalTND = totalUSDT * rate;
+
+  alert("تم تأكيد معلومات الطلب. سيتم التحقق من الدفع يدويًا.");
