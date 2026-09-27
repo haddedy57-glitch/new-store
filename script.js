@@ -53,14 +53,12 @@ function updateCart() {
       <div>
         <strong>${item.name}</strong><br>
         ${formatLocalPrice(item.priceUSD)}
-        — $${item.priceUSD.toFixed(2)} USD
         <button onclick="removeItem(${index})">حذف</button>
       </div>
     `;
   }).join("");
 
-  totalElement.innerHTML =
-    `${formatLocalPrice(totalUSD)} — $${totalUSD.toFixed(2)} USD`;
+  totalElement.textContent = formatLocalPrice(totalUSD);
 }
 
 function removeItem(index) {
@@ -70,9 +68,9 @@ function removeItem(index) {
 
 function updateProductPrices() {
   const prices = [
-    { id: "price-1", usd: 25 },
-    { id: "price-2", usd: 40 },
-    { id: "price-3", usd: 60 }
+    { id: "price-1", usd: 1 },
+    { id: "price-2", usd: 2 },
+    { id: "price-3", usd: 3 }
   ];
 
   prices.forEach(item => {
