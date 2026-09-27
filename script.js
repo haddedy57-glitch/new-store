@@ -1,36 +1,11 @@
 let cart = [];
 
-let visitorCurrency = "USD";
-let visitorSymbol = "$";
-let exchangeRate = 1;
-
-const currencySymbols = {
-  USD: "$",
-  EUR: "€",
-  GBP: "£",
-  TND: "د.ت",
-  CAD: "C$",
-  AUD: "A$",
-  CHF: "CHF",
-  JPY: "¥",
-  CNY: "¥",
-  AED: "د.إ",
-  SAR: "ر.س",
-  QAR: "ر.ق",
-  KWD: "د.ك",
-  TRY: "₺",
-  MAD: "د.م",
-  DZD: "دج",
-  EGP: "ج.م"
-};
-
 function addToCart(name, priceUSD) {
-  window.addToCart = addToCart;
   cart.push({ name, priceUSD });
   updateCart();
 }
 
-function formatLocalPrice(priceUSD) {
+function formatPrice(priceUSD) {
   return `$${priceUSD.toFixed(2)} USD`;
 }
 
@@ -40,7 +15,7 @@ function updateCart() {
 
   if (cart.length === 0) {
     container.innerHTML = "السلة فارغة";
-    totalElement.textContent = "0";
+    totalElement.textContent = "$0.00 USD";
     return;
   }
 
@@ -50,15 +25,15 @@ function updateCart() {
     totalUSD += item.priceUSD;
 
     return `
-      <div>
+      <div class="cart-item">
         <strong>${item.name}</strong><br>
-        ${formatLocalPrice(item.priceUSD)}
+        ${formatPrice(item.priceUSD)}
         <button onclick="removeItem(${index})">حذف</button>
       </div>
     `;
   }).join("");
 
-  totalElement.textContent = formatLocalPrice(totalUSD);
+  totalElement.textContent = formatPrice(totalUSD);
 }
 
 function removeItem(index) {
@@ -66,37 +41,23 @@ function removeItem(index) {
   updateCart();
 }
 
-function updateProductPrices() {
-  const prices = [
-    { id: "price-1", usd: 1 },
-    { id: "price-2", usd: 2 },
-    { id: "price-3", usd: 3 }
-  ];
-
-  prices.forEach(item => {
-    const element = document.getElementById(item.id);
-    if (element) {
-      element.textContent =
-        `${formatLocalPrice(item.usd)} — $${item.usd.toFixed(2)} USD`;
-    }
-  });
-}
-
-function loadCurrency() {}
-
 function showPayment() {
   if (cart.length === 0) {
     alert("السلة فارغة");
     return;
   }
 
-  const totalUSD = cart.reduce((sum, item) => sum + item.priceUSD, 0);
-  const rate = 120;
-  const totalUSDT = totalUSD;
-  const totalTND = totalUSDT * rate;
+  const totalUSD = cart.reduce(
+    (sum, item) => sum + item.priceUSD,
+    0
+  );
 
-  document.getElementById("paymentUsd").textContent = totalUSD.toFixed(2);
-  document.getElementById("paymentUsdt").textContent = totalUSDT.toFixed(2);
+  document.getElementById("paymentUsd").textContent =
+    totalUSD.toFixed(2);
+
+  document.getElementById("paymentUsdt").textContent =
+    totalUSD.toFixed(2);
+
   document.getElementById("paymentSection").style.display = "block";
 
   document.getElementById("paymentSection").scrollIntoView({
@@ -113,11 +74,6 @@ function sendPaymentOrder() {
     alert("الرجاء إدخال الاسم ورقم الهاتف و TxID");
     return;
   }
-
-  const totalUSD = cart.reduce((sum, item) => sum + item.priceUSD, 0);
-  const rate = 120;
-  const totalUSDT = totalUSD;
-  const totalTND = totalUSDT * rate;
 
   alert("تم تأكيد معلومات الطلب. سيتم التحقق من الدفع يدويًا.");
 }

@@ -3,45 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Play Points</title>
+  <title>متجر الحقائب</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-  <h1>🎮 Google Play Points</h1>
-  <p>منتجات مميزة بأسعار مناسبة</p>
+  <h1>👜 متجر الحقائب</h1>
+  <p>حقائب أنيقة بأسعار مناسبة</p>
 </header>
 
 <main>
   <section class="products">
 
     <div class="product">
-      <div class="product-image">📦</div>
-      <h2>المنتج الأول</h2>
-      <p>وصف قصير للمنتج</p>
-      <strong id="price-1">1.00 USD</strong>
-      <button onclick="addToCart('المنتج الأول', 1)">
+      <div class="product-image">
+        <img src="images/product-1.jpg" alt="WDL7430 Woman Business Handbag">
+      </div>
+      <h2>WDL7430 Woman Business Handbag Elegant Ladies Purse Travel Bags</h2>
+      <p>حقيبة نسائية أنيقة للعمل والسفر</p>
+      <strong id="price-1">$98.99 USD</strong>
+      <button onclick="addToCart('WDL7430 Woman Business Handbag', 98.99)">
         أضف إلى السلة
       </button>
     </div>
 
     <div class="product">
-      <div class="product-image">🎧</div>
-      <h2>المنتج الثاني</h2>
-      <p>وصف قصير للمنتج</p>
-      <strong id="price-2">2.00 USD</strong>
-      <button onclick="addToCart('المنتج الثاني', 2)">
+      <div class="product-image">
+        <img src="images/product-2.jpg" alt="Color Blocking Women's Shoulder Crossbody Bag">
+      </div>
+      <h2>Fashionable Color Blocking Women's Shoulder Crossbody Bag</h2>
+      <p>حقيبة كتف وكروس بودي نسائية بسعة كبيرة</p>
+      <strong id="price-2">$48.99 USD</strong>
+      <button onclick="addToCart('Color Blocking Women Shoulder Crossbody Bag', 48.99)">
         أضف إلى السلة
       </button>
     </div>
 
     <div class="product">
-      <div class="product-image">⌚</div>
-      <h2>المنتج الثالث</h2>
-      <p>وصف قصير للمنتج</p>
-      <strong id="price-3">3.00 USD</strong>
-      <button onclick="addToCart('المنتج الثالث', 3)">
+      <div class="product-image">
+        <img src="images/product-3.jpg" alt="Ladies Luxury Minimalist Designer Tote Bag">
+      </div>
+      <h2>Ladies Luxury Daily Minimalist Designer Tote Bag</h2>
+      <p>حقيبة يد نسائية أنيقة بتصميم فاخر للاستخدام اليومي</p>
+      <strong id="price-3">$29.98 USD</strong>
+      <button onclick="addToCart('Ladies Luxury Minimalist Designer Tote Bag', 29.98)">
         أضف إلى السلة
       </button>
     </div>
@@ -50,34 +56,32 @@
 
   <section class="cart">
     <h2>🛒 سلة المشتريات</h2>
-
     <div id="cartItems">السلة فارغة</div>
-
     <h3>
       المجموع:
-      <span id="total">0</span>
+      <span id="total">$0.00 USD</span>
     </h3>
-
     <button class="order-button" onclick="showPayment()">
       📱 إرسال الطلب
     </button>
   </section>
-<section id="paymentSection" class="cart" style="display:none">
-<h2>💳 الدفع اليدوي بـ USDT</h2>
-<p>المبلغ بالدولار: <strong id="paymentUsd">0</strong> USD</p>
-<p>المبلغ بـ USDT: <strong id="paymentUsdt">0</strong> USDT</p>
-<p>Binance UID:</p>
-<strong>950124722</strong>
-<p>بعد التحويل، أدخل معلوماتك:</p>
-<input id="customerName" type="text" placeholder="الاسم">
-<input id="customerPhone" type="tel" placeholder="رقم الهاتف">
-<input id="txid" type="text" placeholder="رقم المعاملة / TxID">
-<button onclick="sendPaymentOrder()">تأكيد الدفع</button>
-</section>
+
+  <section id="paymentSection" class="cart" style="display:none">
+    <h2>💳 الدفع بـ USDT</h2>
+    <p>المبلغ بالدولار: <strong id="paymentUsd">0.00</strong> USD</p>
+    <p>المبلغ بـ USDT: <strong id="paymentUsdt">0.00</strong> USDT</p>
+    <p>Binance UID:</p>
+    <strong>950124722</strong>
+    <p>بعد التحويل، أدخل معلوماتك:</p>
+    <input id="customerName" type="text" placeholder="الاسم">
+    <input id="customerPhone" type="tel" placeholder="رقم الهاتف">
+    <input id="txid" type="text" placeholder="رقم المعاملة / TxID">
+    <button onclick="sendPaymentOrder()">تأكيد الدفع</button>
+  </section>
 </main>
 
 <footer>
-  <p>© 2026 Google Play Points</p>
+  <p>© 2026 متجر الحقائب</p>
 </footer>
 
 <script src="script.js"></script>
