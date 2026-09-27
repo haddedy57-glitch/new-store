@@ -1,149 +1,365 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Handbag Store</title>
+  <meta name="theme-color" content="#101a2b">
+  <title>Handbag Store | Elegant Bags for Every Moment</title>
+  <meta name="description" content="Discover elegant handbags, tote bags and crossbody bags at Handbag Store.">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header>
-  <h1>👜 Handbag Store</h1>
-  <p>Elegant handbags at affordable prices</p>
+<div class="topbar">
+  <div>✦ Elegant handbags for every moment</div>
+  <div>Secure checkout &nbsp; | &nbsp; Customer support</div>
+</div>
+
+<header class="site-header">
+  <div class="brand">
+    <div class="brand-icon">👜</div>
+    <div>
+      <h1>Handbag Store</h1>
+      <span>STYLE IN YOUR HANDS</span>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#collection">Shop</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <button class="cart-icon" onclick="openCart()">
+    🛒 <span id="cartCount">0</span>
+  </button>
 </header>
 
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="eyebrow">PREMIUM COLLECTION</span>
+    <h2>Elegant Handbags<br>for Every Moment</h2>
+    <p>
+      Discover stylish handbags designed for modern women,
+      everyday elegance and timeless looks.
+    </p>
+    <a href="#collection" class="hero-button">Shop Collection →</a>
+  </div>
+
+  <div class="hero-image">
+    <img src="images/product-1.jpg" alt="Elegant handbag">
+  </div>
+</section>
+
+<section class="benefits">
+  <div>
+    <span>🛡️</span>
+    <strong>Secure Checkout</strong>
+    <small>Safe and simple ordering</small>
+  </div>
+
+  <div>
+    <span>📦</span>
+    <strong>Quality Selection</strong>
+    <small>Carefully selected designs</small>
+  </div>
+
+  <div>
+    <span>↻</span>
+    <strong>Easy Ordering</strong>
+    <small>Simple shopping experience</small>
+  </div>
+
+  <div>
+    <span>💬</span>
+    <strong>Customer Support</strong>
+    <small>We're here to help</small>
+  </div>
+</section>
+
 <main>
-  <section class="products">
 
-    <div class="product">
-      <div class="product-image">
-        <img src="images/product-1.jpg" alt="WDL7430 Woman Business Handbag">
-      </div>
-      <h2>WDL7430 Woman Business Handbag Elegant Ladies Purse Travel Bags</h2>
-      <p>Elegant handbag for work and travel</p>
-      <strong id="price-1">$98.99 USD</strong>
-      <button onclick="addToCart('WDL7430 Woman Business Handbag', 98.99)">
-        Add to Cart
-      </button>
+<section class="collection" id="collection">
+
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow dark">OUR COLLECTION</span>
+      <h2>Shop Our Handbags</h2>
+      <p>Modern designs, elegant styles and affordable prices.</p>
     </div>
 
-    <div class="product">
-      <div class="product-image">
-        <img src="images/product-2.jpg" alt="Color Blocking Women's Shoulder Crossbody Bag">
-      </div>
-      <h2>Fashionable Color Blocking Women's Shoulder Crossbody Bag</h2>
-      <p>Stylish large-capacity shoulder and crossbody bag</p>
-      <strong id="price-2">$48.99 USD</strong>
-      <button onclick="addToCart('Color Blocking Women Shoulder Crossbody Bag', 48.99)">
-        Add to Cart
-      </button>
+    <div class="filters">
+      <button class="filter active" onclick="filterProducts('all', this)">All</button>
+      <button class="filter" onclick="filterProducts('tote', this)">Tote Bags</button>
+      <button class="filter" onclick="filterProducts('shoulder', this)">Shoulder Bags</button>
+      <button class="filter" onclick="filterProducts('crossbody', this)">Crossbody</button>
     </div>
+  </div>
 
-    <div class="product">
+  <div class="products">
+
+    <article class="product" data-category="tote">
       <div class="product-image">
-        <img src="images/product-3.jpg" alt="Ladies Luxury Minimalist Designer Tote Bag">
+        <span class="badge">New</span>
+        <button class="heart" onclick="toggleHeart(this)">♡</button>
+        <img src="images/product-1.jpg" alt="Ladies Luxury Daily Minimalist Designer Tote Bag">
       </div>
-      <h2>Ladies Luxury Daily Minimalist Designer Tote Bag</h2>
-      <p>Elegant luxury handbag for everyday use</p>
-      <strong id="price-3">$29.98 USD</strong>
-      <button onclick="addToCart('Ladies Luxury Minimalist Designer Tote Bag', 29.98)">
-        Add to Cart
-      </button>
-    </div>
-
-
-    <div class="product">
-      <div class="product-image">
-        <img src="images/product-4.jpg" alt="Brown Luxury Handbag">
+      <div class="product-info">
+        <h3>Ladies Luxury Daily Minimalist Designer Tote Bag</h3>
+        <p>Elegant handbag for everyday use.</p>
+        <div class="rating">★★★★★ <small>(4.8)</small></div>
+        <strong>$29.98</strong>
+        <button class="add-button" onclick="addToCart('Ladies Luxury Daily Minimalist Designer Tote Bag',29.98,'images/product-1.jpg')">🛒 Add to Cart</button>
       </div>
-      <h2>Brown Luxury Handbag</h2>
-      <p>حقيبة يد بنية أنيقة بتصميم فاخر</p>
-      <strong>$54.99 USD</strong>
-      <button onclick="addToCart('Brown Luxury Handbag', 54.99)">Add to Cart</button>
-    </div>
+    </article>
 
-    <div class="product">
+    <article class="product" data-category="shoulder crossbody">
       <div class="product-image">
+        <button class="heart" onclick="toggleHeart(this)">♡</button>
+        <img src="images/product-2.jpg" alt="Fashionable Color Blocking Women's Shoulder Crossbody Bag">
+      </div>
+      <div class="product-info">
+        <h3>Fashionable Color Blocking Women's Shoulder Crossbody Bag</h3>
+        <p>Stylish large-capacity shoulder bag.</p>
+        <div class="rating">★★★★★ <small>(4.7)</small></div>
+        <strong>$48.99</strong>
+        <button class="add-button" onclick="addToCart('Color Blocking Women Shoulder Crossbody Bag',48.99,'images/product-2.jpg')">🛒 Add to Cart</button>
+      </div>
+    </article>
+
+    <article class="product" data-category="shoulder">
+      <div class="product-image">
+        <button class="heart" onclick="toggleHeart(this)">♡</button>
+        <img src="images/product-3.jpg" alt="WDL7430 Woman Business Handbag">
+      </div>
+      <div class="product-info">
+        <h3>WDL7430 Woman Business Handbag</h3>
+        <p>Elegant handbag for work, travel and daily use.</p>
+        <div class="rating">★★★★★ <small>(4.9)</small></div>
+        <strong>$98.99</strong>
+        <button class="add-button" onclick="addToCart('WDL7430 Woman Business Handbag',98.99,'images/product-3.jpg')">🛒 Add to Cart</button>
+      </div>
+    </article>
+
+    <article class="product" data-category="shoulder">
+      <div class="product-image">
+        <button class="heart" onclick="toggleHeart(this)">♡</button>
+        <img src="images/product-4.jpg" alt="Black Minimalist Handbag">
+      </div>
+      <div class="product-info">
+        <h3>Black Minimalist Handbag</h3>
+        <p>Modern minimalist design for everyday style.</p>
+        <div class="rating">★★★★★ <small>(4.7)</small></div>
+        <strong>$59.99</strong>
+        <button class="add-button" onclick="addToCart('Black Minimalist Handbag',59.99,'images/product-4.jpg')">🛒 Add to Cart</button>
+      </div>
+    </article>
+
+    <article class="product" data-category="shoulder">
+      <div class="product-image">
+        <button class="heart" onclick="toggleHeart(this)">♡</button>
         <img src="images/product-5.jpg" alt="Pink Elegant Handbag">
       </div>
-      <h2>Pink Elegant Handbag</h2>
-      <p>Elegant pink handbag for everyday use</p>
-      <strong>$44.99 USD</strong>
-      <button onclick="addToCart('Pink Elegant Handbag', 44.99)">Add to Cart</button>
-    </div>
-
-    <div class="product">
-      <div class="product-image">
-        <img src="images/product-6.jpg" alt="Black Minimalist Handbag">
+      <div class="product-info">
+        <h3>Pink Elegant Handbag</h3>
+        <p>Elegant and practical handbag for daily use.</p>
+        <div class="rating">★★★★★ <small>(4.8)</small></div>
+        <strong>$44.99</strong>
+        <button class="add-button" onclick="addToCart('Pink Elegant Handbag',44.99,'images/product-5.jpg')">🛒 Add to Cart</button>
       </div>
-      <h2>Black Minimalist Handbag</h2>
-      <p>Modern minimalist black handbag</p>
-      <strong>$59.99 USD</strong>
-      <button onclick="addToCart('Black Minimalist Handbag', 59.99)">Add to Cart</button>
-    </div>
+    </article>
 
-    <div class="product">
+    <article class="product" data-category="shoulder">
       <div class="product-image">
-        <img src="images/product-7.jpg" alt="Classic Beige Leather Bag">
+        <button class="heart" onclick="toggleHeart(this)">♡</button>
+        <img src="images/product-6.jpg" alt="Brown Luxury Handbag">
       </div>
-      <h2>Classic Beige Leather Bag</h2>
-      <p>Classic and elegant beige handbag</p>
-      <strong>$69.99 USD</strong>
-      <button onclick="addToCart('Classic Beige Leather Bag', 69.99)">Add to Cart</button>
-    </div>
+      <div class="product-info">
+        <h3>Brown Luxury Handbag</h3>
+        <p>Luxury design for a sophisticated look.</p>
+        <div class="rating">★★★★★ <small>(4.8)</small></div>
+        <strong>$54.99</strong>
+        <button class="add-button" onclick="addToCart('Brown Luxury Handbag',54.99,'images/product-6.jpg')">🛒 Add to Cart</button>
+      </div>
+    </article>
 
-    <div class="product">
+    <article class="product" data-category="tote">
       <div class="product-image">
+        <button class="heart" onclick="toggleHeart(this)">♡</button>
+        <img src="images/product-7.jpg" alt="White Elegant Tote Bag">
+      </div>
+      <div class="product-info">
+        <h3>White Elegant Tote Bag</h3>
+        <p>Spacious and stylish everyday tote.</p>
+        <div class="rating">★★★★★ <small>(4.6)</small></div>
+        <strong>$49.99</strong>
+        <button class="add-button" onclick="addToCart('White Elegant Tote Bag',49.99,'images/product-7.jpg')">🛒 Add to Cart</button>
+      </div>
+    </article>
+
+    <article class="product" data-category="shoulder">
+      <div class="product-image">
+        <button class="heart" onclick="toggleHeart(this)">♡</button>
         <img src="images/product-8.jpg" alt="Red Fashion Handbag">
       </div>
-      <h2>Red Fashion Handbag</h2>
-      <p>Elegant red handbag for a stylish look</p>
-      <strong>$39.99 USD</strong>
-      <button onclick="addToCart('Red Fashion Handbag', 39.99)">Add to Cart</button>
-    </div>
-
-    <div class="product">
-      <div class="product-image">
-        <img src="images/product-9.jpg" alt="White Elegant Tote Bag">
+      <div class="product-info">
+        <h3>Red Fashion Handbag</h3>
+        <p>Elegant red handbag for special occasions.</p>
+        <div class="rating">★★★★★ <small>(4.7)</small></div>
+        <strong>$39.99</strong>
+        <button class="add-button" onclick="addToCart('Red Fashion Handbag',39.99,'images/product-8.jpg')">🛒 Add to Cart</button>
       </div>
-      <h2>White Elegant Tote Bag</h2>
-      <p>Elegant spacious white tote bag</p>
-      <strong>$49.99 USD</strong>
-      <button onclick="addToCart('White Elegant Tote Bag', 49.99)">Add to Cart</button>
-    </div>
+    </article>
 
-  </section>
+    <article class="product" data-category="shoulder">
+      <div class="product-image">
+        <button class="heart" onclick="toggleHeart(this)">♡</button>
+        <img src="images/product-9.jpg" alt="Classic Beige Leather Bag">
+      </div>
+      <div class="product-info">
+        <h3>Classic Beige Leather Bag</h3>
+        <p>Timeless and elegant everyday design.</p>
+        <div class="rating">★★★★★ <small>(4.8)</small></div>
+        <strong>$69.99</strong>
+        <button class="add-button" onclick="addToCart('Classic Beige Leather Bag',69.99,'images/product-9.jpg')">🛒 Add to Cart</button>
+      </div>
+    </article>
 
-  <section class="cart">
-    <h2>🛒 Shopping Cart</h2>
-    <div id="cartItems">Your cart is empty</div>
-    <h3>
-      Total:
-      <span id="total">$0.00 USD</span>
-    </h3>
-    <button class="order-button" onclick="showPayment()">
-      📱 Place Order
-    </button>
-  </section>
+  </div>
+</section>
 
-  <section id="paymentSection" class="cart" style="display:none">
-    <h2>💳 Pay with USDT</h2>
-    <p>Amount in USD: <strong id="paymentUsd">0.00</strong> USD</p>
-    <p>Amount in USDT: <strong id="paymentUsdt">0.00</strong> USDT</p>
-    <p>Binance UID:</p>
-    <strong>950124722</strong>
-    <p>After the transfer, enter your information:</p>
-    <input id="customerName" type="text" placeholder="Name">
-    <input id="customerPhone" type="tel" placeholder="Phone Number">
-    <input id="txid" type="text" placeholder="Transaction ID / TxID">
-    <button onclick="sendPaymentOrder()">Confirm Payment</button>
-  </section>
+<section class="about" id="about">
+  <div>
+    <span class="eyebrow dark">ABOUT US</span>
+    <h2>Style, quality and simplicity.</h2>
+    <p>
+      Handbag Store brings together elegant handbag designs
+      for everyday life, work, travel and special occasions.
+      Our goal is to make online shopping simple and enjoyable.
+    </p>
+  </div>
+  <div class="about-card">
+    <span>👜</span>
+    <strong>9+</strong>
+    <small>Handbag styles</small>
+  </div>
+</section>
+
 </main>
 
-<footer>
-  <p>© 2026 Handbag Store</p>
+<footer id="contact">
+  <div class="footer-brand">
+    <h2>👜 Handbag Store</h2>
+    <p>Style in your hands.</p>
+  </div>
+
+  <div>
+    <h3>Quick Links</h3>
+    <a href="#home">Home</a>
+    <a href="#collection">Shop</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div>
+    <h3>Customer Service</h3>
+    <a href="#">Shipping</a>
+    <a href="#">Returns</a>
+    <a href="#">FAQ</a>
+    <a href="#">Support</a>
+  </div>
+
+  <div>
+    <h3>Stay Connected</h3>
+    <p>Follow us for new arrivals and offers.</p>
+    <div class="socials">f &nbsp; ◎ &nbsp; ♪ &nbsp; 𝕏</div>
+  </div>
+
+  <div class="copyright">
+    © 2026 Handbag Store. All rights reserved.
+  </div>
 </footer>
+
+<div id="overlay" class="overlay" onclick="closeCart()"></div>
+
+<aside id="cartDrawer" class="cart-drawer">
+  <div class="cart-header">
+    <h2>Shopping Cart</h2>
+    <button onclick="closeCart()">×</button>
+  </div>
+
+  <div id="cartItems" class="drawer-items">
+    <div class="empty-cart">
+      <span>🛒</span>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+
+  <div class="cart-bottom">
+    <div class="subtotal">
+      <span>Subtotal</span>
+      <strong id="total">$0.00</strong>
+    </div>
+
+    <button class="checkout-button" onclick="showPayment()">
+      Proceed to Checkout →
+    </button>
+  </div>
+</aside>
+
+<section id="paymentSection" class="payment-modal">
+  <div class="payment-box">
+
+    <button class="close-payment" onclick="closePayment()">×</button>
+
+    <span class="eyebrow dark">CHECKOUT</span>
+    <h2>Complete Your Order</h2>
+
+    <div class="payment-summary">
+      <span>Order Total</span>
+      <strong>$<span id="paymentUsd">0.00</span> USD</strong>
+    </div>
+
+    <div class="payment-method">
+      <div class="method active">
+        <span>₮</span>
+        <div>
+          <strong>Pay with USDT</strong>
+          <small>Manual payment</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="usdt-box">
+      <h3>USDT Payment</h3>
+      <p>Send the exact amount in USDT, then submit your transaction details below.</p>
+
+      <div class="uid-box">
+        <span>Binance UID</span>
+        <strong>950124722</strong>
+      </div>
+
+      <div class="amount-row">
+        <span>Amount to send</span>
+        <strong><span id="paymentUsdt">0.00</span> USDT</strong>
+      </div>
+    </div>
+
+    <div class="customer-form">
+      <input id="customerName" type="text" placeholder="Full Name">
+      <input id="customerPhone" type="tel" placeholder="Phone Number">
+      <input id="txid" type="text" placeholder="Transaction ID / TxID">
+      <button onclick="sendPaymentOrder()">Confirm Payment</button>
+    </div>
+
+    <p class="payment-note">
+      🔒 Your order details are used only to process your order.
+    </p>
+
+  </div>
+</section>
 
 <script src="script.js"></script>
 </body>
