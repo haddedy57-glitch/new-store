@@ -14,7 +14,7 @@ function updateCart() {
   const totalElement = document.getElementById("total");
 
   if (cart.length === 0) {
-    container.innerHTML = "السلة فارغة";
+    container.innerHTML = "Your cart is empty";
     totalElement.textContent = "$0.00 USD";
     return;
   }
@@ -28,7 +28,7 @@ function updateCart() {
       <div class="cart-item">
         <strong>${item.name}</strong><br>
         ${formatPrice(item.priceUSD)}
-        <button onclick="removeItem(${index})">حذف</button>
+        <button onclick="removeItem(${index})">Remove</button>
       </div>
     `;
   }).join("");
@@ -43,7 +43,7 @@ function removeItem(index) {
 
 function showPayment() {
   if (cart.length === 0) {
-    alert("السلة فارغة");
+    alert("Your cart is empty");
     return;
   }
 
@@ -71,9 +71,9 @@ function sendPaymentOrder() {
   const txid = document.getElementById("txid").value.trim();
 
   if (!name || !phoneCustomer || !txid) {
-    alert("الرجاء إدخال الاسم ورقم الهاتف و TxID");
+    alert("Please enter your name, phone number and TxID");
     return;
   }
 
-  alert("تم تأكيد معلومات الطلب. سيتم التحقق من الدفع يدويًا.");
+  alert("Order information confirmed. Your payment will be verified manually.");
 }
