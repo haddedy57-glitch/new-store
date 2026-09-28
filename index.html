@@ -3,284 +3,356 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LuxeCarry — Elegant handbags designed for everyday luxury.">
-  <title>LuxeCarry | Luxury Handbags</title>
+  <meta name="description" content="Handbag Store — elegant handbags for every moment.">
+  <title>Handbag Store | Style in Your Hands</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="container nav-wrap">
-    <a href="#home" class="logo">Luxe<span>Carry</span></a>
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div>🚚 Free worldwide shipping</div>
+    <span>|</span>
+    <div>🔒 Secure payments</div>
+    <span>|</span>
+    <div>🎧 24/7 customer support</div>
 
-    <nav class="main-nav">
-      <a href="#home">Home</a>
+    <div class="top-right">
+      <span>🌐 USD⌄</span>
+      <span>♙</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <a href="#" class="brand">
+      <div class="brand-icon">♧</div>
+      <div>
+        <strong>Handbag Store</strong>
+        <small>STYLE IN YOUR HANDS</small>
+      </div>
+    </a>
+
+    <nav>
+      <a href="#home" class="active">Home</a>
       <a href="#shop">Shop</a>
-      <a href="#payment">Payment</a>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
 
-    <button class="cart-button" id="openCart">
-      🛍 Bag <span id="cartCount">0</span>
-    </button>
-  </div>
-</header>
-
-<main>
-
-<section class="hero" id="home">
-  <div class="container hero-grid">
-    <div class="hero-content">
-      <span class="eyebrow">TIMELESS COLLECTION</span>
-      <h1>Luxury handbags for every moment.</h1>
-      <p>
-        Discover elegant handbags designed to bring effortless style,
-        quality and confidence to your everyday look.
-      </p>
-      <a href="#shop" class="primary-btn">Shop Collection</a>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="cart-button" id="openCart">
+        🛒
+        <span id="cartCount">0</span>
+      </button>
     </div>
+  </header>
 
-    <div class="hero-image">
-      <img src="images/product-1.jpg" alt="Luxury handbag">
-    </div>
-  </div>
-</section>
+  <!-- HERO -->
+  <main id="home">
 
-<section class="benefits">
-  <div class="container benefits-grid">
-    <div>
-      <strong>✓ Secure Checkout</strong>
-      <span>Simple and protected ordering</span>
-    </div>
-    <div>
-      <strong>✓ Quality Selection</strong>
-      <span>Carefully selected designs</span>
-    </div>
-    <div>
-      <strong>✓ Easy Ordering</strong>
-      <span>Shop easily from any device</span>
-    </div>
-    <div>
-      <strong>✓ Customer Support</strong>
-      <span>We're here to help</span>
-    </div>
-  </div>
-</section>
+    <section class="hero">
+      <div class="hero-overlay"></div>
 
-<section class="shop-section" id="shop">
-  <div class="container">
+      <img
+        src="images/product-9.jpg"
+        alt="Elegant beige handbag"
+        class="hero-image"
+      >
 
-    <div class="section-heading">
-      <span class="eyebrow">OUR COLLECTION</span>
-      <h2>Shop Our Handbags</h2>
-      <p>Modern designs, elegant styles and affordable prices.</p>
-    </div>
-
-    <div class="shop-tools">
-      <div class="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="tote">Tote Bags</button>
-        <button class="filter-btn" data-filter="shoulder">Shoulder Bags</button>
-        <button class="filter-btn" data-filter="crossbody">Crossbody</button>
+      <div class="hero-content">
+        <span>PREMIUM COLLECTION</span>
+        <h1>Elegant Handbags<br>for Every Moment</h1>
+        <p>
+          Discover our exclusive collection of stylish handbags
+          designed for modern women.
+        </p>
+        <a href="#shop" class="primary-btn">Shop Now <span>→</span></a>
       </div>
 
-      <div class="shop-controls">
-        <input
-          type="search"
-          id="searchInput"
-          placeholder="Search handbags..."
-          aria-label="Search handbags"
-        >
+      <button class="hero-next">›</button>
 
-        <select id="sortSelect" aria-label="Sort products">
-          <option value="default">Sort by</option>
-          <option value="low">Price: Low to High</option>
-          <option value="high">Price: High to Low</option>
-          <option value="name">Name: A-Z</option>
+      <div class="hero-dots">
+        <i class="active"></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">♢</div>
+        <div>
+          <strong>Secure Payment</strong>
+          <span>Safe and encrypted transactions</span>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">♧</div>
+        <div>
+          <strong>Free Shipping</strong>
+          <span>Worldwide delivery</span>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">⟳</div>
+        <div>
+          <strong>Easy Returns</strong>
+          <span>30-day return policy</span>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">♧</div>
+        <div>
+          <strong>24/7 Support</strong>
+          <span>We're here to help</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section class="shop-section" id="shop">
+
+      <div class="shop-heading">
+        <div>
+          <span>OUR COLLECTION</span>
+          <h2>Our Collection</h2>
+          <p>Premium quality • Modern designs • Unbeatable prices</p>
+        </div>
+
+        <div class="filters">
+          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn" data-category="tote">Tote Bags</button>
+          <button class="filter-btn" data-category="shoulder">Shoulder Bags</button>
+          <button class="filter-btn" data-category="crossbody">Crossbody Bags</button>
+          <button class="filter-btn" data-category="handbag">☷</button>
+        </div>
+      </div>
+
+      <div class="shop-tools">
+        <div class="search-wrap">
+          <span>⌕</span>
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Search handbags..."
+          >
+        </div>
+
+        <select id="sortSelect">
+          <option value="featured">Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name</option>
         </select>
       </div>
+
+      <div id="productsGrid" class="products-grid"></div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+      <span>ABOUT HANDBAG STORE</span>
+      <h2>Style, quality and simplicity.</h2>
+      <p>
+        Handbag Store brings together elegant handbag designs for everyday
+        life, work, travel and special occasions. Our goal is to make online
+        shopping simple while helping you find a style you'll love.
+      </p>
+
+      <div class="about-points">
+        <span>✦ Carefully selected styles</span>
+        <span>✦ Elegant everyday designs</span>
+        <span>✦ Simple online ordering</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CART SIDEBAR -->
+  <aside class="cart-sidebar" id="cartSidebar">
+
+    <div class="cart-header">
+      <h2>🛒 Shopping Cart</h2>
+      <button id="closeCart">×</button>
     </div>
 
-    <div class="products-grid" id="productsGrid"></div>
-
-  </div>
-</section>
-
-<section class="about-section" id="about">
-  <div class="container about-content">
-    <span class="eyebrow">ABOUT LUXECARRY</span>
-    <h2>Style, quality and simplicity.</h2>
-    <p>
-      LuxeCarry brings together elegant handbag designs for everyday life,
-      work, travel and special occasions. Our goal is to make online
-      shopping simple while helping you find a style you'll love.
-    </p>
-
-    <div class="about-points">
-      <span>✦ Carefully selected styles</span>
-      <span>✦ Elegant everyday designs</span>
-      <span>✦ Simple online ordering</span>
-    </div>
-  </div>
-</section>
-
-<section class="payment-section" id="payment">
-  <div class="container payment-box">
-
-    <div class="section-heading">
-      <span class="eyebrow">CHECKOUT</span>
-      <h2>Complete Your Order</h2>
-      <p>Select your products and choose your preferred payment method.</p>
+    <div id="cartItems" class="cart-items">
+      <div class="empty-cart">
+        <span>🛍️</span>
+        <strong>Your cart is empty</strong>
+        <p>Add your favorite handbags to continue.</p>
+      </div>
     </div>
 
-    <div class="payment-summary">
+    <div class="cart-summary">
       <div>
-        <span>Order Total</span>
-        <strong id="checkoutTotal">$0.00 USD</strong>
+        <span>Subtotal</span>
+        <strong id="cartSubtotal">$0.00</strong>
       </div>
+
+      <button id="checkoutBtn" class="checkout-btn">
+        Proceed to Checkout <span>→</span>
+      </button>
     </div>
 
-    <div class="payment-methods">
+    <!-- PAYMENT -->
+    <div class="payment-panel" id="payment">
 
-      <div class="payment-card">
-        <div class="payment-icon">💳</div>
-        <div>
-          <h3>Pay by Card</h3>
-          <p>
-            Secure card checkout will be available through our payment
-            partner.
-          </p>
-          <button type="button" class="primary-btn" id="moonpayButton">
-            Pay by Card
-          </button>
-        </div>
+      <div class="payment-title">
+        <span>▣</span>
+        <h2>Payment</h2>
       </div>
 
-      <div class="payment-card manual-payment">
-        <div class="payment-icon">₮</div>
-        <div>
-          <h3>Pay with USDT</h3>
-          <p>
-            Send the exact amount in USDT, then submit your transaction
-            details below.
-          </p>
+      <div class="payment-tabs">
+        <button class="payment-tab active" data-payment="usdt">
+          ₮ Pay with USDT
+        </button>
+        <button class="payment-tab" data-payment="card">
+          ▣ Card Payment
+        </button>
+      </div>
 
-          <div class="binance-box">
-            <span>Binance UID</span>
-            <strong>950124722</strong>
-            <button type="button" id="copyBinanceUid">Copy UID</button>
+      <!-- USDT -->
+      <div class="payment-content active" id="usdtPayment">
+
+        <div class="payment-amount">
+          <span>Amount in USD:</span>
+          <strong id="paymentUsd">$0.00</strong>
+        </div>
+
+        <div class="payment-amount">
+          <span>Amount in USDT:</span>
+          <strong>~ <span id="paymentUsdt">0.00</span> USDT ⓘ</strong>
+        </div>
+
+        <div class="qr-payment">
+          <div class="qr-placeholder">
+            <span>QR</span>
           </div>
 
-          <form id="paymentForm">
-            <input
-              type="text"
-              id="customerName"
-              placeholder="Full Name"
-              required
-            >
+          <div>
+            <small>Scan the QR code or send to this UID</small>
+            <div class="uid-box">
+              <strong>950124722</strong>
+              <button id="copyUid">Copy</button>
+            </div>
+          </div>
+        </div>
 
-            <input
-              type="tel"
-              id="customerPhone"
-              placeholder="Phone Number"
-              required
-            >
+        <p class="payment-note">
+          After the transfer, enter your information:
+        </p>
 
-            <input
-              type="text"
-              id="transactionId"
-              placeholder="Transaction ID / TxID"
-              required
-            >
+        <input id="customerName" type="text" placeholder="♙  Name">
+        <input id="customerPhone" type="tel" placeholder="☎  Phone Number">
+        <input id="transactionId" type="text" placeholder="▣  Transaction ID / TxID">
 
-            <button type="submit" class="primary-btn">
-              Confirm Payment
-            </button>
-          </form>
+        <button id="confirmPayment" class="confirm-btn">
+          Confirm Payment
+        </button>
 
-          <small class="payment-note">
-            🔒 Your order details are used only to process your order.
+      </div>
+
+      <!-- CARD -->
+      <div class="payment-content" id="cardPayment">
+
+        <div class="card-payment-box">
+          <div class="card-icon">▣</div>
+          <h3>Pay securely by card</h3>
+          <p>
+            Card checkout will be provided through our secure payment partner.
+          </p>
+
+          <button id="cardPayBtn" class="card-pay-btn">
+            Pay by Card →
+          </button>
+
+          <small>
+            Secure checkout • Visa • Mastercard
           </small>
+        </div>
+
+      </div>
+
+      <div class="safe-order">
+        <div class="safe-icon">✓</div>
+        <div>
+          <strong>Your Order is Safe</strong>
+          <p>We manually verify all payments and protect your order information.</p>
         </div>
       </div>
 
     </div>
-  </div>
-</section>
+  </aside>
 
-</main>
+  <div class="cart-backdrop" id="cartBackdrop"></div>
 
-<footer class="site-footer" id="contact">
-  <div class="container footer-grid">
+  <!-- FOOTER -->
+  <footer id="contact">
 
-    <div>
-      <a href="#home" class="logo">Luxe<span>Carry</span></a>
+    <div class="footer-brand">
+      <div class="footer-logo">♧</div>
+      <div>
+        <strong>Handbag Store</strong>
+        <small>STYLE IN YOUR HANDS</small>
+      </div>
+
       <p>
-        Elegant handbags designed for everyday style.
+        Elegant handbags at affordable prices.<br>
+        Quality, style and trust — all in one place.
       </p>
     </div>
 
-    <div>
-      <h4>Quick Links</h4>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
       <a href="#home">Home</a>
       <a href="#shop">Shop</a>
-      <a href="#payment">Payment</a>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
 
-    <div>
-      <h4>Customer Service</h4>
-      <a href="#contact">Shipping</a>
-      <a href="#contact">Returns</a>
-      <a href="#contact">FAQ</a>
-      <a href="#contact">Support</a>
+    <div class="footer-column">
+      <h3>Customer Service</h3>
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+      <a href="#">FAQ</a>
+      <a href="#">Support</a>
     </div>
 
-    <div>
-      <h4>Stay Connected</h4>
-      <p>Follow us for new arrivals and offers.</p>
+    <div class="footer-column">
+      <h3>Stay Connected</h3>
       <div class="socials">
         <span>f</span>
         <span>◎</span>
+        <span>♪</span>
         <span>𝕏</span>
+      </div>
+
+      <div class="newsletter">
+        <input type="email" placeholder="Your email address">
+        <button>→</button>
       </div>
     </div>
 
-  </div>
-
-  <div class="footer-bottom">
-    © 2026 LuxeCarry. All rights reserved.
-  </div>
-</footer>
-
-<div class="cart-overlay" id="cartOverlay"></div>
-
-<aside class="cart-drawer" id="cartDrawer">
-  <div class="cart-header">
-    <h2>Shopping Bag</h2>
-    <button id="closeCart" aria-label="Close cart">×</button>
-  </div>
-
-  <div class="cart-items" id="cartItems">
-    <p class="empty-cart">Your bag is empty.</p>
-  </div>
-
-  <div class="cart-footer">
-    <div class="cart-total">
-      <span>Subtotal</span>
-      <strong id="cartTotal">$0.00</strong>
+    <div class="footer-bottom">
+      <span>© 2026 Handbag Store. All rights reserved.</span>
+      <span>₮ USDT &nbsp; VISA &nbsp; Mastercard &nbsp; ₿ &nbsp; ETH</span>
     </div>
 
-    <button class="primary-btn checkout-btn" id="checkoutButton">
-      Proceed to Checkout
-    </button>
-  </div>
-</aside>
+  </footer>
 
-<div class="toast" id="toast"></div>
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
 
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
