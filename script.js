@@ -457,7 +457,14 @@ document.getElementById("cardPayBtn").addEventListener("click", () => {
     return;
   }
 
-  showToast("Card checkout is being prepared");
+  const paymentBox = document.getElementById("helioCheckoutContainer");
+
+  if (paymentBox) {
+    paymentBox.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
 });
 
 /* HERO BUTTON */
