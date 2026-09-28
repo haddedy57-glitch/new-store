@@ -266,6 +266,7 @@
       <div class="payment-content" id="cardPayment">
 
         <div class="card-payment-box">
+        <div id="helioCheckoutContainer"></div>
           <div class="card-icon">▣</div>
           <h3>Pay securely by card</h3>
           <p>
@@ -354,5 +355,28 @@
   <div class="toast" id="toast"></div>
 
   <script src="script.js"></script>
+
+<script type="module" crossorigin src="https://embed.hel.io/assets/index-v1.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  window.helioCheckout(
+    document.getElementById("helioCheckoutContainer"),
+    {
+      paylinkId: "6ab9997a95fb245f1c802ed1",
+      theme: {"themeMode":"light"},
+      primaryColor: "#7D00FF",
+      neutralColor: "#A2A0B4",
+      display: "inline",
+      onSuccess: event => console.log(event),
+      onError: event => console.log(event),
+      onPending: event => console.log(event),
+      onCancel: () => console.log("Cancelled payment"),
+      onStartPayment: () => console.log("Starting payment")
+    }
+  );
+});
+</script>
+
 </body>
 </html>
