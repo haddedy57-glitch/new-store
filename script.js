@@ -81,18 +81,17 @@ const products = [
     description: "A classic beige bag with a versatile, timeless design."
   }
 ];
-
 let cart = JSON.parse(localStorage.getItem("luxecarry-cart") || "[]");
 let activeCategory = "all";
 
 const productsGrid = document.getElementById("productsGrid");
 const cartItems = document.getElementById("cartItems");
 const cartCount = document.getElementById("cartCount");
-const cartTotal = document.getElementById("cartTotal");
-const paymentTotal = document.getElementById("paymentTotal");
-const cartDrawer = document.getElementById("cartDrawer");
-const cartOverlay = document.getElementById("cartOverlay");
-const cartEmpty = document.getElementById("cartEmpty");
+const cartSubtotal = document.getElementById("cartSubtotal");
+const paymentUsd = document.getElementById("paymentUsd");
+const paymentUsdt = document.getElementById("paymentUsdt");
+const cartSidebar = document.getElementById("cartSidebar");
+const cartBackdrop = document.getElementById("cartBackdrop");
 const toast = document.getElementById("toast");
 const searchInput = document.getElementById("searchInput");
 const sortSelect = document.getElementById("sortSelect");
@@ -116,6 +115,13 @@ function getCartTotal() {
   }, 0);
 }
 
+function categoryName(category) {
+  if (category === "crossbody") return "Crossbody";
+  if (category === "tote") return "Tote Bag";
+  if (category === "shoulder") return "Shoulder Bag";
+  return "Handbag";
+}
+
 function renderProducts() {
   const search = searchInput.value.trim().toLowerCase();
   const sort = sortSelect.value;
@@ -132,11 +138,11 @@ function renderProducts() {
     return categoryMatch && searchMatch;
   });
 
-  if (sort === "low") {
+  if (sort === "price-low") {
     list.sort((a, b) => a.price - b.price);
   }
 
-  if (sort === "high") {
+  if (sort === "price-high") {
     list.sort((a, b) => b.price - a.price);
   }
 
@@ -146,11 +152,11 @@ function renderProducts() {
 
   if (!list.length) {
     productsGrid.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:60px 20px;">
-        <h3 style="font-family:'Playfair Display',serif;font-size:28px;">
+      <div style="grid-column:1/-1;text-align:center;padding:60px 20px">
+        <h3 style="font-family:Georgia,serif;font-size:28px">
           No products found
         </h3>
-        <p style="color:#777;margin-top:8px;">
+        <p style="color:#777;margin-top:8px">
           Try another search or category.
         </p>
       </div>
@@ -160,53 +166,55 @@ function renderProducts() {
 
   productsGrid.innerHTML = list.map(product => `
     <article class="product-card">
-
       <div class="product-image">
         <span class="product-badge">${product.badge}</span>
+
+        <button
+          class="product-fav"
+          type="button"
+          aria-label="Add to favorites"
+          onclick="toggleFavorite(this)"
+        >♡</button>
 
         <img
           src="${product.image}"
           alt="${product.name}"
           loading="lazy"
-          onerror="this.style.opacity='0'"
         >
       </div>
 
       <div class="product-info">
-
         <span class="product-category">
           ${categoryName(product.category)}
         </span>
 
         <h3>${product.name}</h3>
 
-        <p>${product.description}</p>
+        <p class="product-description">
+          ${product.description}
+        </p>
+
+        <div class="product-rating">★★★★★</div>
 
         <div class="product-bottom">
-
-          <strong class="product-price">
-            ${money(product.price)}
-          </strong>
+          <strong class="product-price">${money(product.price)}</strong>
 
           <button
-            class="add-button"
+            class="add-to-cart"
+            type="button"
             onclick="addToCart(${product.id})"
           >
             Add to Bag
           </button>
-
         </div>
-
       </div>
-
     </article>
   `).join("");
 }
 
-function categoryName(category) {
-  if (category === "crossbody") return "Crossbody";
-  if (category === "tote") return "Tote Bag";
-  return "Handbag";
+function toggleFavorite(button) {
+  button.classList.toggle("active");
+  button.textContent = button.classList.contains("active") ? "♥" : "♡";
 }
 
 function addToCart(id) {
@@ -215,10 +223,7 @@ function addToCart(id) {
   if (existing) {
     existing.quantity += 1;
   } else {
-    cart.push({
-      id,
-      quantity: 1
-    });
+    cart.push({ id, quantity: 1 });
   }
 
   saveCart();
@@ -226,7 +231,6 @@ function addToCart(id) {
   updateCartCount();
 
   const product = products.find(p => p.id === id);
-
   if (product) {
     showToast(`${product.name} added to your bag`);
   }
@@ -234,7 +238,6 @@ function addToCart(id) {
 
 function changeQuantity(id, amount) {
   const item = cart.find(item => item.id === id);
-
   if (!item) return;
 
   item.quantity += amount;
@@ -260,23 +263,21 @@ function removeFromCart(id) {
 
 function renderCart() {
   if (!cart.length) {
-    cartItems.innerHTML = "";
-    cartEmpty.classList.add("show");
+    cartItems.innerHTML = `
+      <div class="empty-cart">
+        <span>🛍️</span>
+        <strong>Your cart is empty</strong>
+        <p>Add your favorite handbags to continue.</p>
+      </div>
+    `;
   } else {
-    cartEmpty.classList.remove("show");
-
     cartItems.innerHTML = cart.map(item => {
       const product = products.find(p => p.id === item.id);
-
       if (!product) return "";
 
       return `
         <div class="cart-item">
-
-          <img
-            src="${product.image}"
-            alt="${product.name}"
-          >
+          <img src="${product.image}" alt="${product.name}">
 
           <div>
             <h4>${product.name}</h4>
@@ -286,23 +287,23 @@ function renderCart() {
             </div>
 
             <div class="quantity-controls">
-              <button onclick="changeQuantity(${product.id}, -1)">−</button>
+              <button type="button"
+                onclick="changeQuantity(${product.id}, -1)">−</button>
               <span>${item.quantity}</span>
-              <button onclick="changeQuantity(${product.id}, 1)">+</button>
+              <button type="button"
+                onclick="changeQuantity(${product.id}, 1)">+</button>
             </div>
 
             <button
               class="remove-item"
+              type="button"
               onclick="removeFromCart(${product.id})"
             >
               Remove
             </button>
           </div>
 
-          <strong>
-            ${money(product.price * item.quantity)}
-          </strong>
-
+          <strong>${money(product.price * item.quantity)}</strong>
         </div>
       `;
     }).join("");
@@ -310,8 +311,9 @@ function renderCart() {
 
   const total = getCartTotal();
 
-  cartTotal.textContent = money(total);
-  paymentTotal.textContent = `${money(total)} USDT`;
+  cartSubtotal.textContent = money(total);
+  paymentUsd.textContent = money(total);
+  paymentUsdt.textContent = total.toFixed(2);
 }
 
 function updateCartCount() {
@@ -319,28 +321,15 @@ function updateCartCount() {
 }
 
 function openCart() {
-  cartDrawer.classList.add("open");
-  cartOverlay.classList.add("show");
+  cartSidebar.classList.add("open");
+  cartBackdrop.classList.add("show");
   document.body.style.overflow = "hidden";
 }
 
 function closeCart() {
-  cartDrawer.classList.remove("open");
-  cartOverlay.classList.remove("show");
+  cartSidebar.classList.remove("open");
+  cartBackdrop.classList.remove("show");
   document.body.style.overflow = "";
-}
-
-function goToPayment() {
-  closeCart();
-
-  document.getElementById("payment").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-
-  if (!cart.length) {
-    showToast("Your bag is empty");
-  }
 }
 
 function showToast(message) {
@@ -354,39 +343,80 @@ function showToast(message) {
   }, 2600);
 }
 
-function copyUid() {
-  const uid = document.getElementById("binanceUid").textContent.trim();
+async function copyUid() {
+  const uid = "950124722";
 
-  navigator.clipboard.writeText(uid)
-    .then(() => {
-      showToast("Binance UID copied");
-    })
-    .catch(() => {
-      showToast("UID: " + uid);
-    });
+  try {
+    await navigator.clipboard.writeText(uid);
+    showToast("Binance UID copied");
+  } catch {
+    showToast("Binance UID: " + uid);
+  }
 }
 
-document.querySelectorAll(".filter").forEach(button => {
-  button.addEventListener("click", () => {
+/* HEADER CART */
+document.getElementById("openCart").addEventListener("click", openCart);
+document.getElementById("closeCart").addEventListener("click", closeCart);
+cartBackdrop.addEventListener("click", closeCart);
 
-    document.querySelectorAll(".filter").forEach(btn => {
+/* CHECKOUT */
+document.getElementById("checkoutBtn").addEventListener("click", () => {
+  if (!cart.length) {
+    showToast("Your bag is empty");
+    return;
+  }
+
+  document.getElementById("payment").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+/* FILTERS */
+document.querySelectorAll(".filter-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(btn => {
       btn.classList.remove("active");
     });
 
     button.classList.add("active");
-
     activeCategory = button.dataset.category;
 
     renderProducts();
   });
 });
 
+/* SEARCH + SORT */
 searchInput.addEventListener("input", renderProducts);
 sortSelect.addEventListener("change", renderProducts);
 
-document.getElementById("paymentForm").addEventListener("submit", event => {
-  event.preventDefault();
+/* PAYMENT TABS */
+document.querySelectorAll(".payment-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".payment-tab").forEach(t => {
+      t.classList.remove("active");
+    });
 
+    document.querySelectorAll(".payment-content").forEach(content => {
+      content.classList.remove("active");
+    });
+
+    tab.classList.add("active");
+
+    const target =
+      tab.dataset.payment === "card"
+        ? document.getElementById("cardPayment")
+        : document.getElementById("usdtPayment");
+
+    target.classList.add("active");
+  });
+});
+
+/* COPY UID */
+document.getElementById("copyUid").addEventListener("click", copyUid);
+
+/* USDT CONFIRM */
+document.getElementById("confirmPayment").addEventListener("click", () => {
   if (!cart.length) {
     showToast("Add products to your bag first");
     return;
@@ -394,7 +424,8 @@ document.getElementById("paymentForm").addEventListener("submit", event => {
 
   const name = document.getElementById("customerName").value.trim();
   const phone = document.getElementById("customerPhone").value.trim();
-  const transactionId = document.getElementById("transactionId").value.trim();
+  const transactionId =
+    document.getElementById("transactionId").value.trim();
 
   if (!name || !phone || !transactionId) {
     showToast("Please complete all payment details");
@@ -414,9 +445,27 @@ document.getElementById("paymentForm").addEventListener("submit", event => {
 
   showToast("Payment details submitted");
 
-  document.getElementById("paymentForm").reset();
+  document.getElementById("customerName").value = "";
+  document.getElementById("customerPhone").value = "";
+  document.getElementById("transactionId").value = "";
 });
 
+/* CARD */
+document.getElementById("cardPayBtn").addEventListener("click", () => {
+  if (!cart.length) {
+    showToast("Add products to your bag first");
+    return;
+  }
+
+  showToast("Card checkout is being prepared");
+});
+
+/* HERO BUTTON */
+document.querySelector(".hero-next").addEventListener("click", () => {
+  showToast("More collection items coming soon");
+});
+
+/* ESC */
 document.addEventListener("keydown", event => {
   if (event.key === "Escape") {
     closeCart();
