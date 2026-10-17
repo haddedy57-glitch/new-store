@@ -430,19 +430,16 @@ document.getElementById("confirmPayment").addEventListener("click", () => {
   const total = getCartTotal();
 
   alert(
-    "Payment details received.\n\n" +
+    "Payment details are ready for review.\n\n" +
     "Customer: " + name + "\n" +
     "Phone: " + phone + "\n" +
     "Transaction ID: " + transactionId + "\n" +
     "Total: " + money(total) + " USDT\n\n" +
-    "Your payment will be checked manually."
+    "This does NOT confirm that payment was received. " +
+    "Please wait until the transaction is verified."
   );
 
-  showToast("Payment details submitted");
-
-  document.getElementById("customerName").value = "";
-  document.getElementById("customerPhone").value = "";
-  document.getElementById("transactionId").value = "";
+  showToast("Payment is not verified yet");
 });
 
 /* CARD */
