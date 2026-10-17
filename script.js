@@ -5,7 +5,7 @@ const products = [
     price: 9.99,
     category: "business",
     image: "images/ebook-covers/ebook-cover-1.jpg",
-    description: "A practical digital guide for planning and organizing a small business."
+    description: "Explore practical starting points for planning and organizing a small business. This guide introduces business planning, setting priorities, organizing everyday tasks, and thinking through the basic steps involved in running a small business. It is intended for readers who want a clearer starting point for their business ideas."
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const products = [
     price: 7.99,
     category: "marketing",
     image: "images/ebook-covers/ebook-cover-2.jpg",
-    description: "An introductory guide to online marketing strategies and content planning."
+    description: "Get introduced to online marketing and the role it can play in reaching an audience. This guide provides an accessible starting point for understanding digital marketing strategies and planning content. It is suitable for readers who want to become more familiar with promoting products, services, or projects online."
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const products = [
     price: 6.99,
     category: "finance",
     image: "images/ebook-covers/ebook-cover-3.jpg",
-    description: "A beginner-friendly guide to budgeting and understanding personal finances."
+    description: "Build a foundation for understanding everyday personal finances. This guide introduces budgeting and organizing money-related information, helping readers think more clearly about income, expenses, and financial priorities. It is designed as an accessible starting point for people who want to improve their understanding of basic money management."
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const products = [
     price: 5.99,
     category: "productivity",
     image: "images/ebook-covers/ebook-cover-4.jpg",
-    description: "Digital reading material about organizing tasks and managing time."
+    description: "Explore practical ideas for organizing tasks and approaching time management more deliberately. This guide focuses on the general principles of planning activities, setting priorities, and creating a more organized approach to everyday responsibilities. It may be useful for readers who want to reflect on their routines and work habits."
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const products = [
     price: 8.99,
     category: "business",
     image: "images/ebook-covers/ebook-cover-5.jpg",
-    description: "An introduction to setting up and managing an online business."
+    description: "Discover introductory concepts related to starting and managing an online business. This guide offers a starting point for thinking about e-commerce, organizing an online business idea, and understanding some of the general considerations involved in selling online. It is intended for readers who want to learn more about the basics of online commerce."
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const products = [
     price: 4.99,
     category: "marketing",
     image: "images/ebook-covers/ebook-cover-6.jpg",
-    description: "A digital planning resource for organizing social media content."
+    description: "Use this digital planning resource as a starting point for organizing social media content. It is designed to help readers think about content planning, keep ideas organized, and approach publishing with greater structure. It may be useful for individuals or small businesses looking for a more organized way to plan their social media activity."
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const products = [
     price: 7.49,
     category: "business",
     image: "images/ebook-covers/ebook-cover-7.jpg",
-    description: "An introduction to planning freelance work and organizing client projects."
+    description: "Explore introductory ideas for organizing freelance work and client projects. This guide focuses on planning work, keeping project tasks organized, and thinking through the responsibilities involved in working independently. It is intended for readers who are exploring freelancing and want a clearer starting point for organizing their work."
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const products = [
     price: 5.49,
     category: "education",
     image: "images/ebook-covers/ebook-cover-8.jpg",
-    description: "A guide to study planning, note-taking, and learning techniques."
+    description: "Explore general approaches to organizing study time, taking notes, and developing learning routines. This guide offers an accessible starting point for students who want to think about how they plan their studies and manage learning tasks. Readers can use these ideas to reflect on their own study habits and find an approach that suits them."
   },
   {
     id: 9,
@@ -69,7 +69,7 @@ const products = [
     price: 6.49,
     category: "education",
     image: "images/ebook-covers/ebook-cover-9.jpg",
-    description: "A digital workbook with writing prompts and planning activities."
+    description: "Explore creative writing through a workbook focused on writing prompts and planning activities. It is intended to help readers get started with ideas, organize their thoughts, and spend time developing their writing. This resource may suit beginners or anyone looking for a structured starting point for creative writing practice."
   }
 ];
 let cart = JSON.parse(localStorage.getItem("digitalbookstore-cart") || "[]");
