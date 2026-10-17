@@ -162,7 +162,7 @@ function renderProducts() {
   productsGrid.innerHTML = list.map(product => `
     <article class="product-card">
       <div class="product-image">
-        <span class="product-badge">Digital Book</span>
+        <span class="product-badge">DIGITAL BOOK</span>
 
         <button
           class="product-fav"
