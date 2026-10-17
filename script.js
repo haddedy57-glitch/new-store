@@ -474,3 +474,61 @@ document.addEventListener("keydown", event => {
 renderProducts();
 renderCart();
 updateCartCount();
+
+
+// BOOK DETAILS
+function openBookDetails(id) {
+  const product = products.find(p => p.id === Number(id));
+  if (!product) return;
+
+  document.getElementById("bookDetailsImage").src = product.image;
+  document.getElementById("bookDetailsImage").alt = product.name;
+  document.getElementById("bookDetailsCategory").textContent =
+    categoryName(product.category);
+  document.getElementById("bookDetailsTitle").textContent = product.name;
+  document.getElementById("bookDetailsDescription").textContent =
+    product.description;
+  document.getElementById("bookDetailsPrice").textContent =
+    money(product.price);
+
+  const modal = document.getElementById("bookDetailsModal");
+  modal.hidden = false;
+  document.body.classList.add("book-details-open");
+}
+
+function closeBookDetails() {
+  const modal = document.getElementById("bookDetailsModal");
+  if (modal) modal.hidden = true;
+  document.body.classList.remove("book-details-open");
+}
+
+document.addEventListener("click", function(event) {
+  const closeButton = event.target.closest("[data-close-book-details]");
+  if (closeButton) {
+    closeBookDetails();
+    return;
+  }
+
+  const addButton = event.target.closest("#bookDetailsAddToCart");
+  if (addButton) {
+    const title = document.getElementById("bookDetailsTitle").textContent;
+    const product = products.find(p => p.name === title);
+    if (product) {
+      addToCart(product.id);
+      closeBookDetails();
+    }
+    return;
+  }
+
+  const card = event.target.closest(".product-card");
+  if (card && !event.target.closest("button")) {
+    const title = card.querySelector(".product-info h3");
+    const product = title && products.find(p => p.name === title.textContent.trim());
+    if (product) openBookDetails(product.id);
+  }
+});
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") closeBookDetails();
+});
+

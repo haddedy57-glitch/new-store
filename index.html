@@ -393,5 +393,26 @@ document.addEventListener("DOMContentLoaded", () => {
       </p>
     </div>
     
+
+  <!-- BOOK DETAILS MODAL -->
+  <div id="bookDetailsModal" class="book-details-modal" hidden>
+    <div class="book-details-backdrop" data-close-book-details></div>
+    <section class="book-details-panel" role="dialog" aria-modal="true"
+             aria-labelledby="bookDetailsTitle">
+      <button type="button" class="book-details-close"
+              aria-label="Close details" data-close-book-details>×</button>
+      <img id="bookDetailsImage" src="" alt="">
+      <div class="book-details-content">
+        <span id="bookDetailsCategory" class="product-category"></span>
+        <h2 id="bookDetailsTitle"></h2>
+        <p id="bookDetailsDescription"></p>
+        <strong id="bookDetailsPrice" class="product-price"></strong>
+        <button type="button" id="bookDetailsAddToCart" class="add-to-cart">
+          Add to Cart
+        </button>
+      </div>
+    </section>
+  </div>
+
 </body>
 </html>
