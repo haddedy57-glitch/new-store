@@ -1,87 +1,78 @@
 const products = [
   {
     id: 1,
-    name: "WDL7430 Woman Business Handbag",
-    price: 98.99,
-    category: "handbag",
-    badge: "Featured",
-    image: "images/product-1.jpg",
-    description: "Elegant business handbag designed for work, travel and everyday use."
+    name: "The Small Business Digital Handbook",
+    price: 9.99,
+    category: "business",
+    image: "images/ebook-covers/ebook-cover-1.jpg",
+    description: "A practical digital guide for planning and organizing a small business."
   },
   {
     id: 2,
-    name: "Color Blocking Shoulder Crossbody Bag",
-    price: 48.99,
-    category: "crossbody",
-    badge: "Popular",
-    image: "images/product-2.jpg",
-    description: "Versatile color-block shoulder and crossbody bag with generous capacity."
+    name: "Digital Marketing Essentials",
+    price: 7.99,
+    category: "marketing",
+    image: "images/ebook-covers/ebook-cover-2.jpg",
+    description: "An introductory guide to online marketing strategies and content planning."
   },
   {
     id: 3,
-    name: "Luxury Minimalist Designer Tote Bag",
-    price: 29.98,
-    category: "tote",
-    badge: "New",
-    image: "images/product-3.jpg",
-    description: "Minimalist high-end tote bag for polished daily style."
+    name: "Personal Finance Basics",
+    price: 6.99,
+    category: "finance",
+    image: "images/ebook-covers/ebook-cover-3.jpg",
+    description: "A beginner-friendly guide to budgeting and understanding personal finances."
   },
   {
     id: 4,
-    name: "Black Minimalist Handbag",
-    price: 59.99,
-    category: "handbag",
-    badge: "Popular",
-    image: "images/product-4.jpg",
-    description: "A timeless black handbag with a clean minimalist silhouette."
+    name: "Productivity and Time Management",
+    price: 5.99,
+    category: "productivity",
+    image: "images/ebook-covers/ebook-cover-4.jpg",
+    description: "Digital reading material about organizing tasks and managing time."
   },
   {
     id: 5,
-    name: "Pink Elegant Handbag",
-    price: 44.99,
-    category: "handbag",
-    badge: "New",
-    image: "images/product-5.jpg",
-    description: "A soft pink handbag designed for elegant everyday looks."
+    name: "The Beginner's Guide to E-commerce",
+    price: 8.99,
+    category: "business",
+    image: "images/ebook-covers/ebook-cover-5.jpg",
+    description: "An introduction to setting up and managing an online business."
   },
   {
     id: 6,
-    name: "Brown Luxury Handbag",
-    price: 54.99,
-    category: "handbag",
-    badge: "Featured",
-    image: "images/product-6.jpg",
-    description: "A refined brown handbag with a polished luxury-inspired finish."
+    name: "Social Media Content Planner",
+    price: 4.99,
+    category: "marketing",
+    image: "images/ebook-covers/ebook-cover-6.jpg",
+    description: "A digital planning resource for organizing social media content."
   },
   {
     id: 7,
-    name: "White Elegant Tote Bag",
-    price: 49.99,
-    category: "tote",
-    badge: "New",
-    image: "images/product-7.jpg",
-    description: "A spacious white tote with a clean, elegant profile."
+    name: "Freelancing Starter Guide",
+    price: 7.49,
+    category: "business",
+    image: "images/ebook-covers/ebook-cover-7.jpg",
+    description: "An introduction to planning freelance work and organizing client projects."
   },
   {
     id: 8,
-    name: "Red Fashion Handbag",
-    price: 39.99,
-    category: "handbag",
-    badge: "Popular",
-    image: "images/product-8.jpg",
-    description: "A bold red handbag made to add color to your everyday style."
+    name: "Study Skills and Learning",
+    price: 5.49,
+    category: "education",
+    image: "images/ebook-covers/ebook-cover-8.jpg",
+    description: "A guide to study planning, note-taking, and learning techniques."
   },
   {
     id: 9,
-    name: "Classic Beige Leather Bag",
-    price: 69.99,
-    category: "handbag",
-    badge: "Featured",
-    image: "images/product-9.jpg",
-    description: "A classic beige bag with a versatile, timeless design."
+    name: "Creative Writing Workbook",
+    price: 6.49,
+    category: "education",
+    image: "images/ebook-covers/ebook-cover-9.jpg",
+    description: "A digital workbook with writing prompts and planning activities."
   }
 ];
-let cart = JSON.parse(localStorage.getItem("luxecarry-cart") || "[]");
+let cart = JSON.parse(localStorage.getItem("digitalbookstore-cart") || "[]");
 let activeCategory = "all";
 
 const productsGrid = document.getElementById("productsGrid");
@@ -101,7 +92,7 @@ function money(value) {
 }
 
 function saveCart() {
-  localStorage.setItem("luxecarry-cart", JSON.stringify(cart));
+  localStorage.setItem("digitalbookstore-cart", JSON.stringify(cart));
 }
 
 function getCartCount() {
@@ -116,10 +107,14 @@ function getCartTotal() {
 }
 
 function categoryName(category) {
-  if (category === "crossbody") return "Crossbody";
-  if (category === "tote") return "Tote Bag";
-  if (category === "shoulder") return "Shoulder Bag";
-  return "Handbag";
+  const names = {
+    business: "Business",
+    marketing: "Marketing",
+    finance: "Finance",
+    productivity: "Productivity",
+    education: "Education"
+  };
+  return names[category] || "Digital Book";
 }
 
 function renderProducts() {
@@ -167,7 +162,7 @@ function renderProducts() {
   productsGrid.innerHTML = list.map(product => `
     <article class="product-card">
       <div class="product-image">
-        <span class="product-badge">${product.badge}</span>
+        <span class="product-badge">Digital Book</span>
 
         <button
           class="product-fav"
@@ -204,7 +199,7 @@ function renderProducts() {
             type="button"
             onclick="addToCart(${product.id})"
           >
-            Add to Bag
+            Add to Cart
           </button>
         </div>
       </div>
@@ -232,7 +227,7 @@ function addToCart(id) {
 
   const product = products.find(p => p.id === id);
   if (product) {
-    showToast(`${product.name} added to your bag`);
+    showToast(`${product.name} added to your cart`);
   }
 }
 
@@ -258,7 +253,7 @@ function removeFromCart(id) {
   renderCart();
   updateCartCount();
 
-  showToast("Item removed from your bag");
+  showToast("Item removed from your cart");
 }
 
 function renderCart() {
@@ -267,7 +262,7 @@ function renderCart() {
       <div class="empty-cart">
         <span>🛍️</span>
         <strong>Your cart is empty</strong>
-        <p>Add your favorite handbags to continue.</p>
+        <p>Add your favorite ebooks to continue.</p>
       </div>
     `;
   } else {
@@ -362,7 +357,7 @@ cartBackdrop.addEventListener("click", closeCart);
 /* CHECKOUT */
 document.getElementById("checkoutBtn").addEventListener("click", () => {
   if (!cart.length) {
-    showToast("Your bag is empty");
+    showToast("Your cart is empty");
     return;
   }
 
@@ -418,7 +413,7 @@ document.getElementById("copyUid").addEventListener("click", copyUid);
 /* USDT CONFIRM */
 document.getElementById("confirmPayment").addEventListener("click", () => {
   if (!cart.length) {
-    showToast("Add products to your bag first");
+    showToast("Add products to your cart first");
     return;
   }
 
@@ -453,7 +448,7 @@ document.getElementById("confirmPayment").addEventListener("click", () => {
 /* CARD */
 document.getElementById("cardPayBtn").addEventListener("click", () => {
   if (!cart.length) {
-    showToast("Add products to your bag first");
+    showToast("Add products to your cart first");
     return;
   }
 
